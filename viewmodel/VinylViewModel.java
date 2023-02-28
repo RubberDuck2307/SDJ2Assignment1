@@ -4,6 +4,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import model.Model;
+import model.VinylState.VinylState;
 
 public class VinylViewModel
 {
@@ -11,10 +12,8 @@ public class VinylViewModel
     private ObjectProperty <SimpleVinylViewModel> selectedVinylProperty;
     private StringProperty error;
 
-  public VinylViewModel(Model model)
+  public VinylViewModel(Model model, VinylState vinylState )
   {
-    this.list = list;
-    this.selectedVinylProperty = selectedVinylProperty;
-    this.error = error;
+
   }
 }
