@@ -14,4 +14,5 @@ public interface Model
 
     public void removeVinylByTitle(String title);
 
+    public void addVinyl(Vinyl vinyl);
 }
