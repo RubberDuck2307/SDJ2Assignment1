@@ -8,7 +8,7 @@ public class ViewModelFactory
   private VinylViewModel vinylViewModel;
 
   public ViewModelFactory(Model model){
-    this.vinylViewModel=new VinylViewModel();
+    this.vinylViewModel=new VinylViewModel(model);
     this.vinylDetailViewModel=new VinylDetailViewModel();
   }
 
