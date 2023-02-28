@@ -26,7 +26,7 @@ public class VinylDetailViewController
     title.textProperty().bind(viewModel.getTitleProperty());
     artist.textProperty().bind(viewModel.getArtistProperty());
     Bindings.bindBidirectional(year.textProperty(),viewModel.getYearProperty(), new StringIntegerConverter(0));
-    year.textProperty().bind(viewModel.getStateProperty());
+    state.textProperty().bind(viewModel.getStateProperty());
     errorLabel.textProperty().bind(viewModel.getErrorProperty());
   }
 
