@@ -4,7 +4,7 @@ import model.Vinyl;
 
 public class ViewState {
 
-    Vinyl vinyl;
+    private Vinyl vinyl;
 
 
     public Vinyl getVinyl() {
