@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sep1.group4.boardgames.view.manageBoardGames.BoardGameViewController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="72.0" prefWidth="600.0" spacing="10.0">
+         <children>
+            <Label prefHeight="40.0" prefWidth="153.0" text="Board Games">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#addButtonPressed" prefHeight="40.0" prefWidth="90.0" text="Add">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="380.0" layoutY="38.0" mnemonicParsing="false" onAction="#editButtonPressed" prefHeight="40.0" prefWidth="100.0" text="Edit">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="449.0" layoutY="38.0" mnemonicParsing="false" onAction="#removeButtonPressed" prefHeight="40.0" prefWidth="125.0" text="Remove">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets left="50.0" right="50.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="19.0" prefWidth="600.0">
+         <children>
+            <TextField fx:id="searchField" onKeyTyped="#search" prefHeight="26.0" prefWidth="353.0" />
+            <ChoiceBox fx:id="filter" prefWidth="150.0" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="225.0" prefWidth="600.0">
+         <children>
+            <ScrollPane>
+               <content>
+                  <TableView fx:id="boardGameTable" prefHeight="250.0" prefWidth="500.0">
+                     <columns>
+                        <TableColumn fx:id="titleColumn" prefWidth="101.59996944665909" text="Game title" />
+                        <TableColumn fx:id="numberOfPlayersColumn" prefWidth="89.5999755859375" text="Nr. of Players" />
+                        <TableColumn fx:id="ownerNameColumn" prefWidth="85.60006713867188" text="Owner" />
+                        <TableColumn fx:id="typeColumn" prefWidth="103.20001220703125" text="Type" />
+                        <TableColumn fx:id="statusColumn" prefWidth="69.5999755859375" text="Status" />
+                        <TableColumn fx:id="ratingColumn" prefWidth="49.5999755859375" text="Rating" />
+                     </columns>
+                  </TableView>
+               </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="57.0" prefWidth="600.0" spacing="10.0">
+         <children>
+            <Label fx:id="errorLabel" prefHeight="49.0" prefWidth="404.0" text="Error label" textFill="RED" />
+            <Button mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="44.0" prefWidth="115.0" text="Cancel">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets left="50.0" right="50.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>
