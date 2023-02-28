@@ -40,12 +40,10 @@
                <content>
                   <TableView fx:id="boardGameTable" prefHeight="250.0" prefWidth="500.0">
                      <columns>
-                        <TableColumn fx:id="titleColumn" prefWidth="101.59996944665909" text="Game title" />
-                        <TableColumn fx:id="numberOfPlayersColumn" prefWidth="89.5999755859375" text="Nr. of Players" />
-                        <TableColumn fx:id="ownerNameColumn" prefWidth="85.60006713867188" text="Owner" />
-                        <TableColumn fx:id="typeColumn" prefWidth="103.20001220703125" text="Type" />
-                        <TableColumn fx:id="statusColumn" prefWidth="69.5999755859375" text="Status" />
-                        <TableColumn fx:id="ratingColumn" prefWidth="49.5999755859375" text="Rating" />
+                        <TableColumn fx:id="titleColumn" prefWidth="180.79998165369034" text="Title" />
+                        <TableColumn fx:id="numberOfPlayersColumn" prefWidth="124.00003051757812" text="Artist" />
+                        <TableColumn fx:id="ownerNameColumn" prefWidth="73.5999755859375" text="Year" />
+                        <TableColumn fx:id="statusColumn" minWidth="1.5999755859375" prefWidth="112.0" text="Status" />
                      </columns>
                   </TableView>
                </content>
