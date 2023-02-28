@@ -34,7 +34,7 @@ public class VinylViewController
   }
 
 
-  public void editButtonPressed(ActionEvent actionEvent)
+  public void addButtonPressed(ActionEvent actionEvent)
   {
   }
 
