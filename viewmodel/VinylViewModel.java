@@ -12,7 +12,7 @@ public class VinylViewModel
     private ObjectProperty <SimpleVinylViewModel> selectedVinylProperty;
     private StringProperty error;
 
-  public VinylViewModel(Model model, VinylState vinylState )
+  public VinylViewModel(Model model)
   {
 
   }
