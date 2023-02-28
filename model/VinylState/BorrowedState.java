@@ -3,6 +3,12 @@ package model.VinylState;
 import model.Vinyl;
 
 public class BorrowedState implements VinylState{
+
+    @Override
+    public String getName() {
+        return "Borrowed";
+    }
+
     @Override
     public void Borrow(Vinyl vinyl) {
         throw new RuntimeException("The vinyl is already borrowed");

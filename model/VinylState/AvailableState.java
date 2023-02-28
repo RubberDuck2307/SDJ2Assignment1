@@ -6,6 +6,11 @@ public class AvailableState implements VinylState{
 
 
     @Override
+    public String getName() {
+        return "Available";
+    }
+
+    @Override
     public void Borrow(Vinyl vinyl) {
         vinyl.setState(new BorrowedState());
     }

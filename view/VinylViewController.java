@@ -13,12 +13,12 @@ import viewmodel.VinylViewModel;
 public class VinylViewController
 {
 
-  @FXML private TableColumn yearColumn;
-  @FXML private TableColumn statusColumn;
+  @FXML private TableColumn <VinylViewModel, Integer> yearColumn;
+  @FXML private TableColumn <VinylViewModel, String> statusColumn;
   @FXML private Label errorLabel;
-  @FXML private TableColumn artistColumn;
-  @FXML private TableView VinylTable;
-  @FXML private TableColumn titleColumn;
+  @FXML private TableColumn <VinylViewModel, String> artistColumn;
+  @FXML private TableView <VinylViewModel> VinylTable;
+  @FXML private TableColumn <VinylViewModel, String> titleColumn;
   private Region root;
   private ViewHandler viewHandler;
   private VinylViewModel viewModel;
@@ -37,5 +37,9 @@ public class VinylViewController
 
   public void editButtonPressed(ActionEvent actionEvent)
   {
+  }
+
+  public void reset(){
+    //do nothing
   }
 }

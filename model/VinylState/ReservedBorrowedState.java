@@ -5,6 +5,11 @@ import model.Vinyl;
 public class ReservedBorrowedState implements VinylState{
 
     @Override
+    public String getName() {
+        return "Reserved and Borrowed";
+    }
+
+    @Override
     public void Borrow(Vinyl vinyl) {
 
         throw new RuntimeException("model.Vinyl is already borrowed");

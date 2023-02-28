@@ -4,6 +4,8 @@ import model.Vinyl;
 
 public interface VinylState {
 
+
+    public String getName();
     public void Borrow(Vinyl vinyl);
 
     public void Reserve(Vinyl vinyl,String name);

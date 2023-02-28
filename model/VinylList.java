@@ -31,8 +31,7 @@ public class VinylList
     int index = -1;
     for (int i = 0; i < vinylList.size(); i++)
     {
-      vinylList.get(i).getID() == ID;
-      index = i;
+      if(vinylList.get(i).getId() == ID) index = i;
     }
     vinylList.remove(index);
   }
@@ -63,7 +62,7 @@ public class VinylList
     int index = -1;
     for (int i = 0; i < vinylList.size(); i++)
     {
-      vinylList.get(i).getID() == ID;
+      if (vinylList.get(i).getId() == ID)
       index = i;
     }
     return vinylList.get(index);
