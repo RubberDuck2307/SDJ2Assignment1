@@ -1,3 +1,8 @@
+package model;
+
+import model.VinylState.AvailableState;
+import model.VinylState.VinylState;
+
 public class Vinyl {
 
     private String title;
@@ -6,18 +11,26 @@ public class Vinyl {
 
     private int year;
 
-    private boolean lendingState = false;
+    private VinylState state;
 
     private String reservationName;
     private int id;
-    public void Vinyl(String title, String artist, int year, boolean lendingState, String reservationName, int id)
+    public void Vinyl(String title, String artist, int year, String reservationName, int id)
     {
         this.artist = artist;
         this.title = title;
         this.year = year;
-        this.lendingState = lendingState;
+        this.state = new AvailableState();
         this.reservationName = reservationName;
         this.id = id;
+    }
+
+    public VinylState getState() {
+        return state;
+    }
+
+    public void setState(VinylState state) {
+        this.state = state;
     }
 
     public String getTitle()
@@ -32,10 +45,7 @@ public class Vinyl {
     {
         return year;
     }
-    public boolean getLendingState()
-    {
-        return lendingState;
-    }
+
 
     public void setArtist(String artist) {
         this.artist = artist;
@@ -49,13 +59,6 @@ public class Vinyl {
         this.year = year;
     }
 
-    public boolean isLendingState() {
-        return lendingState;
-    }
-
-    public void setLendingState(boolean lendingState) {
-        this.lendingState = lendingState;
-    }
 
     public String getReservationName() {
         return reservationName;
