@@ -14,12 +14,12 @@
    <children>
       <HBox alignment="CENTER" prefHeight="72.0" prefWidth="600.0" spacing="10.0">
          <children>
-            <Label prefHeight="40.0" prefWidth="153.0" text="VINYL">
+            <Label prefHeight="40.0" prefWidth="153.0" text="Vinyl">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Button layoutX="380.0" layoutY="38.0" mnemonicParsing="false" onAction="#editButtonPressed" prefHeight="43.0" prefWidth="316.0" text="Edit">
+            <Button layoutX="380.0" layoutY="38.0" mnemonicParsing="false" onAction="#addButtonPressed" prefHeight="43.0" prefWidth="316.0" text="Add">
                <font>
                   <Font size="20.0" />
                </font>
