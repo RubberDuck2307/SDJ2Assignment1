@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sep1.group4.boardgames.view.manageBoardGames.BoardGameViewController">
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.VinylViewController">
    <children>
       <HBox alignment="CENTER" prefHeight="72.0" prefWidth="600.0" spacing="10.0">
          <children>
@@ -38,11 +38,11 @@
          <children>
             <ScrollPane>
                <content>
-                  <TableView fx:id="boardGameTable" prefHeight="250.0" prefWidth="500.0">
+                  <TableView fx:id="VinylTable" prefHeight="250.0" prefWidth="500.0">
                      <columns>
                         <TableColumn fx:id="titleColumn" prefWidth="180.79998165369034" text="Title" />
-                        <TableColumn fx:id="numberOfPlayersColumn" prefWidth="124.00003051757812" text="Artist" />
-                        <TableColumn fx:id="ownerNameColumn" prefWidth="73.5999755859375" text="Year" />
+                        <TableColumn fx:id="artistColumn" prefWidth="124.00003051757812" text="Artist" />
+                        <TableColumn fx:id="yearColumn" prefWidth="73.5999755859375" text="Year" />
                         <TableColumn fx:id="statusColumn" minWidth="1.5999755859375" prefWidth="112.0" text="Status" />
                      </columns>
                   </TableView>
