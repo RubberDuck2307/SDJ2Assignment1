@@ -16,7 +16,7 @@ public class ViewModelFactory
   {
     return vinylDetailViewModel;
   }
-
+// bobek
   public VinylViewModel getVinylViewModel()
   {
     return vinylViewModel;
