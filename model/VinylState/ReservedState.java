@@ -3,6 +3,12 @@ package model.VinylState;
 import model.Vinyl;
 
 public class ReservedState implements VinylState{
+
+    @Override
+    public String getName() {
+        return "Reserved";
+    }
+
     @Override
     public void Borrow(Vinyl vinyl) {
 
