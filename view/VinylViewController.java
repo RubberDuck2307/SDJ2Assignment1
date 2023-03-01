@@ -19,10 +19,10 @@ public class VinylViewController
 
   @FXML private TableColumn <SimpleVinylViewModel, Integer> yearColumn;
   @FXML private TableColumn <SimpleVinylViewModel, String> statusColumn;
-  @FXML private Label errorLabel;
   @FXML private TableColumn <SimpleVinylViewModel, String> artistColumn;
   @FXML private TableView <SimpleVinylViewModel> vinylTable;
   @FXML private TableColumn <SimpleVinylViewModel, String> titleColumn;
+  @FXML private Label errorLabel;
   private Region root;
   private ViewHandler viewHandler;
   private VinylViewModel viewModel;
@@ -38,7 +38,7 @@ public class VinylViewController
     statusColumn.setCellValueFactory(cellData -> cellData.getValue().getStateProperty());
     yearColumn.setCellValueFactory(cellData -> cellData.getValue().getYearProperty());
     vinylTable.setItems(viewModel.getAll());
-
+    errorLabel.textProperty().bind(viewModel.getErrorProperty());
 
   }
   public Region getRoot()
