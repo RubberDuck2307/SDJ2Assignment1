@@ -1,5 +1,10 @@
 package model;
 
+import model.VinylState.AvailableState;
+import model.VinylState.BorrowedState;
+import model.VinylState.ReservedState;
+
+import javax.swing.plaf.nimbus.State;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
@@ -31,13 +36,13 @@ public class ModelManager implements Model, PropertyChangeSubject{
 
     @Override
     public void removeVinylById(int id) {
-         removeVinylById(id);
-         property.firePropertyChange("remove",null,getVinylById(id));
+        property.firePropertyChange("remove",null,getVinylById(id));
+        vinylList.removeVinylByID(id);
+
     }
 
     @Override
     public void removeVinylByTitle(String title) {
-
         removeVinylByTitle(title);
         property.firePropertyChange("remove", null, getVinylByTitle(title));
     }
@@ -57,5 +62,20 @@ public class ModelManager implements Model, PropertyChangeSubject{
     public void addVinyl(Vinyl vinyl) {
         vinylList.addVinyl(vinyl);
         property.firePropertyChange("add",null, vinyl);
+    }
+
+    @Override public void changeToReserved(Vinyl vinyl)
+    {
+        vinyl.setState(new ReservedState());
+    }
+
+    @Override public void changeToBorrowed(Vinyl vinyl)
+    {
+        vinyl.setState(new BorrowedState());
+    }
+
+    @Override public void returnVinyl(Vinyl vinyl)
+    {
+        vinyl.setState(new AvailableState());
     }
 }

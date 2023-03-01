@@ -14,6 +14,7 @@ import java.lang.reflect.Field;
 
 public class VinylDetailViewController
 {
+  @FXML private Button removeButton;
   @FXML private TextField title;
   @FXML private TextField artist;
   @FXML private TextField year;
@@ -21,7 +22,6 @@ public class VinylDetailViewController
   @FXML private Label errorLabel;
   @FXML private Button reserveButton;
   @FXML private Button borrowReturnButton;
-  @FXML private Button removeAddButton;
   @FXML private TextField reservedField;
   private Region root;
   private VinylDetailViewModel viewModel;
@@ -33,13 +33,17 @@ public class VinylDetailViewController
     title.textProperty().bind(viewModel.getTitleProperty());
     artist.textProperty().bind(viewModel.getArtistProperty());
     Bindings.bindBidirectional(year.textProperty(),viewModel.getYearProperty(), new StringIntegerConverter(0));
-    state.textProperty().bind(viewModel.getStateProperty());
+    state.textProperty().bindBidirectional(viewModel.getStateProperty());
     errorLabel.textProperty().bind(viewModel.getErrorProperty());
     viewModel.init();
 
     if (state.textProperty().getValue().equals("Borrowed") || state.textProperty().getValue().equals("Reserved and borrowed") ){
       borrowReturnButton.setText("Return");
     }
+    if (state.textProperty().getValue().equals("Borrowed") || state.textProperty().getValue().equals("Reserved and borrowed")|| state.textProperty().getValue().equals("Reserved") ){
+      removeButton.setDisable(true);
+    }
+
 
   }
 
@@ -52,14 +56,25 @@ public class VinylDetailViewController
   }
 
   @FXML public void reservePressed(){
-
+      viewModel.reserve();
+      state.setText("Reserved");
   }
-
-  @FXML public void borrowReturnButtonPressed(){}
+  @FXML public void borrowReturnButtonPressed(){
+    if (state.textProperty().getValue().equals("Borrowed") || state.textProperty().getValue().equals("Reserved and borrowed") ){
+      viewModel.returnVinyl();
+    }
+    else{
+      viewModel.borrow();
+      state.setText("Borrowed");
+    }
+  }
   @FXML public void cancelPressed(){
     viewModel.reset();
     viewHandler.openView("list");
   }
 
-  @FXML public void removePressed(){}
+  @FXML public void removePressed(){
+    viewModel.remove();
+    viewHandler.openView("list");
+  }
 }

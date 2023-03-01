@@ -1,5 +1,6 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -23,13 +24,12 @@ public class VinylViewModel implements PropertyChangeListener {
     private Model model;
 
     public VinylViewModel(Model model, ViewState viewState) {
-
         this.viewState = viewState;
         this.model = model;
         list = FXCollections.observableArrayList();
         error=new SimpleStringProperty();
-        getFromModel();
         model.addListener(this);
+        getFromModel();
     }
 
     private void getFromModel() {
@@ -56,6 +56,13 @@ public class VinylViewModel implements PropertyChangeListener {
         System.out.println(evt.getNewValue());
         if (evt.getPropertyName().equals("add")) {
             list.add(new SimpleVinylViewModel((Vinyl) evt.getNewValue()));
+        }
+        if (evt.getPropertyName().equals("remove")) {
+            //Todo: what to put here???
+            /*int remove = list.size() - 1;
+            Platform.runLater(() ->list.remove(model.getVinylById(
+                (Integer) evt.getNewValue())));
+            System.out.println("Toto je: "+evt.getNewValue());*/
         }
     }
 

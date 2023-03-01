@@ -90,4 +90,12 @@ public class Vinyl {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override public String toString()
+    {
+        return "Vinyl{" + "title='" + title + '\'' + ", artist='" + artist
+            + '\'' + ", year=" + year + ", state=" + state
+            + ", reservationName='" + reservationName + '\'' + ", id=" + id
+            + '}';
+    }
 }

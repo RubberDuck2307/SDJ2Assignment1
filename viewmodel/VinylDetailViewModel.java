@@ -40,6 +40,21 @@ public class VinylDetailViewModel {
         stateProperty.setValue(vinyl.getState().getName());
 
     }
+public void reserve(){
+        model.changeToReserved(model.getVinylById(viewState.getVinylId()));
+        System.out.println(model.getVinylById(viewState.getVinylId()));
+        System.out.println(model.getVinylById(viewState.getVinylId()).getState());
+}
+public void borrow(){
+        model.changeToBorrowed(model.getVinylById(viewState.getVinylId()));
+        System.out.println(model.getVinylById(viewState.getVinylId()));
+        System.out.println(model.getVinylById(viewState.getVinylId()).getState());
+}
+public void returnVinyl(){
+        model.returnVinyl(model.getVinylById(viewState.getVinylId()));
+        System.out.println(model.getVinylById(viewState.getVinylId()));
+        System.out.println(model.getVinylById(viewState.getVinylId()).getState());
+}
 
     public StringProperty getTitleProperty() {
         return titleProperty;
@@ -59,5 +74,10 @@ public class VinylDetailViewModel {
 
     public StringProperty getErrorProperty() {
         return errorProperty;
+    }
+
+    public void remove()
+    {
+        model.removeVinylById(viewState.getVinylId());
     }
 }
