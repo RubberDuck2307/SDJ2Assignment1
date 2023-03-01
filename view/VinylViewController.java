@@ -49,7 +49,7 @@ public class VinylViewController
   public void addButtonPressed(ActionEvent actionEvent)
   {
 
-    viewHandler.openView("detail");
+
   }
 
   public void openDetailView(SimpleVinylViewModel vinyl){
