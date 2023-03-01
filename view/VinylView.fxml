@@ -38,7 +38,7 @@
          <children>
             <ScrollPane>
                <content>
-                  <TableView fx:id="vinylTable" prefHeight="250.0" prefWidth="500.0">
+                  <TableView fx:id="vinylTable" onMouseClicked="#openWindow" prefHeight="250.0" prefWidth="500.0">
                      <columns>
                         <TableColumn fx:id="titleColumn" prefWidth="180.79998165369034" text="Title" />
                         <TableColumn fx:id="artistColumn" prefWidth="124.00003051757812" text="Artist" />

@@ -43,7 +43,9 @@ public class VinylDetailViewController
 
   }
 
-  public void reset(){}
+  public void reset(){
+    viewModel.reset();
+  }
   public Region getRoot()
   {
     return root;

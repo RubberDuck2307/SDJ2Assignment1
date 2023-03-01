@@ -9,63 +9,55 @@ import model.Vinyl;
 import view.ViewState;
 import view.VinylDetailViewController;
 
-public class VinylDetailViewModel
-{
-  private StringProperty titleProperty;
-  private StringProperty artistProperty;
-  private StringProperty stateProperty;
-  private IntegerProperty yearProperty;
-  private StringProperty errorProperty;
-  private ViewState viewState;
-  private Model model;
+public class VinylDetailViewModel {
+    private StringProperty titleProperty;
+    private StringProperty artistProperty;
+    private StringProperty stateProperty;
+    private IntegerProperty yearProperty;
+    private StringProperty errorProperty;
+    private ViewState viewState;
+    private Model model;
 
-  public VinylDetailViewModel(Model model, ViewState viewState){
-    this.model=model;
-    this.titleProperty=new SimpleStringProperty();
-    this.artistProperty=new SimpleStringProperty();
-    this.stateProperty=new SimpleStringProperty();
-    this.yearProperty=new SimpleIntegerProperty();
-    this.errorProperty = new SimpleStringProperty();
-    this.viewState = viewState;
-  }
+    public VinylDetailViewModel(Model model, ViewState viewState) {
+        this.model = model;
+        this.titleProperty = new SimpleStringProperty();
+        this.artistProperty = new SimpleStringProperty();
+        this.stateProperty = new SimpleStringProperty();
+        this.yearProperty = new SimpleIntegerProperty();
+        this.errorProperty = new SimpleStringProperty();
+        this.viewState = viewState;
+    }
 
-  public void reset(){
-    titleProperty.set("");
-    artistProperty.set("");
-    yearProperty.set(0);
-    stateProperty.set("");
-  }
+    public void reset() {
+        init();
+    }
 
-  public void init(){
-      Vinyl vinyl = model.getVinylById(viewState.getVinylId());
-      titleProperty.setValue(vinyl.getTitle());
-      artistProperty.setValue(vinyl.getArtist());
-      yearProperty.setValue(vinyl.getYear());
-      stateProperty.setValue(vinyl.getState().getName());
+    public void init() {
+        Vinyl vinyl = model.getVinylById(viewState.getVinylId());
+        titleProperty.setValue(vinyl.getTitle());
+        artistProperty.setValue(vinyl.getArtist());
+        yearProperty.setValue(vinyl.getYear());
+        stateProperty.setValue(vinyl.getState().getName());
 
-  }
-  public StringProperty getTitleProperty()
-  {
-    return titleProperty;
-  }
+    }
 
-  public IntegerProperty getYearProperty()
-  {
-    return yearProperty;
-  }
+    public StringProperty getTitleProperty() {
+        return titleProperty;
+    }
 
-  public StringProperty getArtistProperty()
-  {
-    return artistProperty;
-  }
+    public IntegerProperty getYearProperty() {
+        return yearProperty;
+    }
 
-  public StringProperty getStateProperty()
-  {
-    return stateProperty;
-  }
+    public StringProperty getArtistProperty() {
+        return artistProperty;
+    }
 
-  public StringProperty getErrorProperty()
-  {
-    return errorProperty;
-  }
+    public StringProperty getStateProperty() {
+        return stateProperty;
+    }
+
+    public StringProperty getErrorProperty() {
+        return errorProperty;
+    }
 }

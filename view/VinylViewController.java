@@ -6,8 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import model.Vinyl;
+import model.VinylState.VinylState;
 import utility.StringIntegerConverter;
 import viewmodel.SimpleVinylViewModel;
 import viewmodel.VinylViewModel;
@@ -37,7 +39,6 @@ public class VinylViewController
     yearColumn.setCellValueFactory(cellData -> cellData.getValue().getYearProperty());
     vinylTable.setItems(viewModel.getAll());
 
-    vinylTable.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> openDetailView(newValue) ));
 
   }
   public Region getRoot()
@@ -51,12 +52,14 @@ public class VinylViewController
     viewHandler.openView("add");
   }
 
-  public void openDetailView(SimpleVinylViewModel vinyl){
-    viewModel.setViewState(vinyl);
-    viewHandler.openView("detail");
-  }
 
   public void reset(){
     //do nothing
+  }
+
+  public void openWindow(MouseEvent mouseEvent) {
+    SimpleVinylViewModel vinyl = vinylTable.getSelectionModel().getSelectedItem();
+    viewModel.setViewState(vinyl);
+    viewHandler.openView("detail");
   }
 }
