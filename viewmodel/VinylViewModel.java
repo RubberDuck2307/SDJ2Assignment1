@@ -29,6 +29,7 @@ public class VinylViewModel implements PropertyChangeListener {
         list = FXCollections.observableArrayList();
         error=new SimpleStringProperty();
         getFromModel();
+        model.addListener(this);
     }
 
     private void getFromModel() {
@@ -52,6 +53,7 @@ public class VinylViewModel implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        System.out.println(evt.getNewValue());
         if (evt.getPropertyName().equals("add")) {
             list.add(new SimpleVinylViewModel((Vinyl) evt.getNewValue()));
         }

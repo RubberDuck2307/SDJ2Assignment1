@@ -1,8 +1,9 @@
 package model;
 
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public interface Model
+public interface Model extends PropertyChangeSubject
 {
 
     public ArrayList<Vinyl> getVinylArraylist();

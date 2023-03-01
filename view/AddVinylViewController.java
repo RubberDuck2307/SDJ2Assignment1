@@ -23,8 +23,8 @@ public class AddVinylViewController
     this.root=root;
     this.viewHandler=viewHandler;
     this.viewModel=viewModel;
-    title.textProperty().bind(viewModel.getTitleProperty());
-    artist.textProperty().bind(viewModel.getArtistProperty());
+    title.textProperty().bindBidirectional(viewModel.getTitleProperty());
+    artist.textProperty().bindBidirectional(viewModel.getArtistProperty());
     Bindings.bindBidirectional(year.textProperty(),viewModel.getYearProperty(), new StringIntegerConverter(0));
     errorLabel.textProperty().bind(viewModel.getErrorProperty());
   }
@@ -39,6 +39,7 @@ public class AddVinylViewController
   @FXML public void addButtonPressed(){
     Vinyl vinyl = new Vinyl(title.getText(),artist.getText(),Integer.parseInt(year.getText()));
     viewModel.add(vinyl);
+    viewHandler.openView("list");
 
   }
   @FXML public void cancelButtonPressed(){
