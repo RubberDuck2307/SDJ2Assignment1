@@ -12,16 +12,63 @@ public class SimpleVinylViewModel
 
   private StringProperty artist;
 
+  private int id;
   public SimpleVinylViewModel(Vinyl vinyl)
   {
+    this.id = vinyl.getId();
     this.year = new SimpleObjectProperty<Integer> (vinyl.getYear());
     this.state = new SimpleStringProperty(vinyl.getState().getName());
     this.artist = new SimpleStringProperty(vinyl.getArtist());
     this.title = new SimpleStringProperty(vinyl.getTitle());
   }
 
+  public Integer getYear() {
+    return year.get();
+  }
 
+  public SimpleObjectProperty<Integer> yearProperty() {
+    return year;
+  }
 
+  public void setYear(Integer year) {
+    this.year.set(year);
+  }
+
+  public String getState() {
+    return state.get();
+  }
+
+  public void setState(String state) {
+    this.state.set(state);
+  }
+
+  public String getTitle() {
+    return title.get();
+  }
+
+  public StringProperty titleProperty() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title.set(title);
+  }
+
+  public String getArtist() {
+    return artist.get();
+  }
+
+  public void setArtist(String artist) {
+    this.artist.set(artist);
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
 
   public StringProperty stateProperty()
   {

@@ -2,12 +2,15 @@ package view;
 
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import utility.StringIntegerConverter;
 import viewmodel.VinylDetailViewModel;
 import viewmodel.VinylViewModel;
+
+import java.lang.reflect.Field;
 
 public class VinylDetailViewController
 {
@@ -16,6 +19,10 @@ public class VinylDetailViewController
   @FXML private TextField year;
   @FXML private TextField state;
   @FXML private Label errorLabel;
+  @FXML private Button reserveButton;
+  @FXML private Button borrowReturnButton;
+  @FXML private Button removeAddButton;
+  @FXML private TextField reservedField;
   private Region root;
   private VinylDetailViewModel viewModel;
   private ViewHandler viewHandler;
@@ -28,6 +35,8 @@ public class VinylDetailViewController
     Bindings.bindBidirectional(year.textProperty(),viewModel.getYearProperty(), new StringIntegerConverter(0));
     state.textProperty().bind(viewModel.getStateProperty());
     errorLabel.textProperty().bind(viewModel.getErrorProperty());
+    viewModel.init();
+
   }
 
   public void reset(){}
@@ -36,10 +45,12 @@ public class VinylDetailViewController
     return root;
   }
 
-  @FXML public void reserveButtonPressed(){
+  @FXML public void reservePressed(){
 
   }
 
   @FXML public void borrowReturnButtonPressed(){}
-  @FXML public void cancelButtonPressed(){}
+  @FXML public void cancelPressed(){}
+
+  @FXML public void removePressed(){}
 }
