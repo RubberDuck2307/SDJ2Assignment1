@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Model;
+import model.Vinyl;
 import view.ViewState;
 import view.VinylDetailViewController;
 
@@ -35,6 +36,14 @@ public class VinylDetailViewModel
     stateProperty.set("");
   }
 
+  public void init(){
+      Vinyl vinyl = model.getVinylById(viewState.getVinylId());
+      titleProperty.setValue(vinyl.getTitle());
+      artistProperty.setValue(vinyl.getArtist());
+      yearProperty.setValue(vinyl.getYear());
+      stateProperty.setValue(vinyl.getState().getName());
+
+  }
   public StringProperty getTitleProperty()
   {
     return titleProperty;

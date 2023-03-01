@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.VinylDetailViewController">
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.VinylDetailViewController">
    <children>
       <VBox>
          <children>
@@ -102,8 +102,18 @@
                      <padding>
                         <Insets left="20.0" right="20.0" />
                      </padding>
+                     <children>
+                        <TextField fx:id="reservedField" />
+                     </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="300.0" />
+                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="300.0">
+                     <children>
+                        <Label prefHeight="36.0" prefWidth="72.0" text="Reserved">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children></VBox>
                </children>
             </HBox>
             <HBox prefHeight="66.0" prefWidth="600.0">
@@ -134,17 +144,22 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="59.0" prefWidth="628.0" spacing="30.0">
                <children>
-                  <Button fx:id="reserve1" mnemonicParsing="false" onAction="#reserveButtonPressed" prefHeight="43.0" prefWidth="121.0" text="Reserve">
+                  <Button fx:id="reserveButton" mnemonicParsing="false" onAction="#reservePressed" prefHeight="43.0" prefWidth="121.0" text="Reserve">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="borrowReturn" mnemonicParsing="false" onAction="#borrowReturnButtonPressed" prefHeight="43.0" prefWidth="140.0" text="Borrow">
+                  <Button fx:id="borrowReturnButton" mnemonicParsing="false" onAction="#borrowReturnButtonPressed" prefHeight="43.0" prefWidth="140.0" text="Borrow">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="cancel11" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="43.0" prefWidth="157.0" text="Remove">
+                  <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removePressed" prefHeight="43.0" prefWidth="157.0" text="Remove">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelPressed" prefHeight="44.0" prefWidth="115.0" text="Cancel">
                      <font>
                         <Font size="20.0" />
                      </font>

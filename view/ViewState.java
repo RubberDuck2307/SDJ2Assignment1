@@ -4,14 +4,18 @@ import model.Vinyl;
 
 public class ViewState {
 
-    private Vinyl vinyl;
+    private int vinyl;
+
+    public ViewState(){
+        vinyl = 0;
+    }
 
 
-    public Vinyl getVinyl() {
+    public int getVinylId() {
         return vinyl;
     }
 
-    public void setVinyl(Vinyl vinyl) {
+    public void setVinylId(int vinyl) {
         this.vinyl = vinyl;
     }
 }
