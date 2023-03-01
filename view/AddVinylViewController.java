@@ -38,5 +38,8 @@ public class AddVinylViewController
 
 
   @FXML public void addButtonPressed(){}
-  @FXML public void cancelButtonPressed(){}
+  @FXML public void cancelButtonPressed(){
+    viewModel.reset();
+    viewHandler.openView("list");
+  }
 }

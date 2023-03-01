@@ -15,6 +15,7 @@ public class ViewHandler
   private ViewModelFactory viewModelFactory;
   private VinylDetailViewController vinylDetailViewController;
   private VinylViewController vinylViewController;
+  private AddVinylViewController addVinylViewController;
 
   public ViewHandler(ViewModelFactory viewModelFactory)
   {
@@ -39,6 +40,10 @@ public class ViewHandler
       }
       case "detail":{
         root = loadVinylDetailView("VinylDetailView.fxml");
+        break;
+      }
+      case "add":{
+        root = loadAddVinylView("AddVinylView.fxml");
         break;
       }
     }
@@ -84,6 +89,30 @@ public class ViewHandler
     }
     return vinylViewController.getRoot();
   }
+  private Region loadAddVinylView(String fxmlFile)
+    {
+      if (addVinylViewController == null)
+      {
+        try
+        {
+          FXMLLoader loader = new FXMLLoader();
+          loader.setLocation(getClass().getResource(fxmlFile));
+          Region root = loader.load();
+          addVinylViewController = loader.getController();
+          addVinylViewController
+              .init(this, viewModelFactory.getAddVinylViewModel(), root);
+        }
+        catch (Exception e)
+        {
+          e.printStackTrace();
+        }
+      }
+      else
+      {
+        addVinylViewController.reset();
+      }
+      return addVinylViewController.getRoot();
+    }
 
   private Region loadVinylDetailView(String fxmlFile)
   {

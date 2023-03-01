@@ -54,7 +54,10 @@ public class VinylDetailViewController
   }
 
   @FXML public void borrowReturnButtonPressed(){}
-  @FXML public void cancelPressed(){}
+  @FXML public void cancelPressed(){
+    viewModel.reset();
+    viewHandler.openView("list");
+  }
 
   @FXML public void removePressed(){}
 }
