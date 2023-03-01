@@ -1,15 +1,18 @@
 package viewmodel;
 
 import model.Model;
+import view.ViewState;
 
 public class ViewModelFactory
 {
   private VinylDetailViewModel vinylDetailViewModel;
   private VinylViewModel vinylViewModel;
 
+  private ViewState viewState;
   public ViewModelFactory(Model model){
-    this.vinylViewModel=new VinylViewModel(model);
-    this.vinylDetailViewModel=new VinylDetailViewModel(model);
+    viewState = new ViewState();
+    this.vinylViewModel=new VinylViewModel(model, viewState);
+    this.vinylDetailViewModel=new VinylDetailViewModel(model, viewState);
   }
 
   public VinylDetailViewModel getVinylDetailViewModel()

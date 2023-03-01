@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.VinylViewController">
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.VinylViewController">
    <children>
       <HBox alignment="CENTER" prefHeight="72.0" prefWidth="600.0" spacing="10.0">
          <children>
@@ -38,7 +38,7 @@
          <children>
             <ScrollPane>
                <content>
-                  <TableView fx:id="VinylTable" prefHeight="250.0" prefWidth="500.0">
+                  <TableView fx:id="vinylTable" prefHeight="250.0" prefWidth="500.0">
                      <columns>
                         <TableColumn fx:id="titleColumn" prefWidth="180.79998165369034" text="Title" />
                         <TableColumn fx:id="artistColumn" prefWidth="124.00003051757812" text="Artist" />

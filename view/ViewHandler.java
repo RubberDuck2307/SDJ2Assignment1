@@ -25,7 +25,7 @@ public class ViewHandler
   public void start(Stage primaryStage)
   {
     this.primaryStage = primaryStage;
-    openView("");
+    openView("list");
   }
 
   public void openView(String id)
@@ -33,17 +33,17 @@ public class ViewHandler
     Region root = null;
     switch (id)
     {
-      case "":{
+      case "list":{
         root = loadVinylView("VinylView.fxml");
         break;
       }
       case "detail":{
-        root = loadVinylDetailView("VinylView.fxml");
+        root = loadVinylDetailView("VinylDetailView.fxml");
         break;
       }
     }
     currentScene.setRoot(root);
-    String title = "";
+    String title = "list";
     if (root.getUserData() != null)
     {
       title += root.getUserData();

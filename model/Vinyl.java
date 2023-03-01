@@ -15,7 +15,8 @@ public class Vinyl {
 
     private String reservationName;
     private int id;
-    public void Vinyl(String title, String artist, int year, String reservationName, int id)
+
+    public Vinyl(String title, String artist, int year, String reservationName, int id)
     {
         this.artist = artist;
         this.title = title;

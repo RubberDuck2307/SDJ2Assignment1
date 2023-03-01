@@ -26,6 +26,7 @@ public class VinylViewController
   public void init (ViewHandler viewHandler, VinylViewModel viewModel,
       Region root)
   {
+
     this.viewModel = viewModel;
     this.viewHandler = viewHandler;
     this.root = root;
@@ -33,6 +34,7 @@ public class VinylViewController
     artistColumn.setCellValueFactory(cellData -> cellData.getValue().getArtistProperty());
     statusColumn.setCellValueFactory(cellData -> cellData.getValue().getStateProperty());
     yearColumn.setCellValueFactory(cellData -> cellData.getValue().getYearProperty());
+    vinylTable.setItems(viewModel.getAll());
 
   }
   public Region getRoot()
@@ -43,7 +45,8 @@ public class VinylViewController
 
   public void addButtonPressed(ActionEvent actionEvent)
   {
-    viewModel.addVinyl();
+
+    viewHandler.openView("detail");
   }
 
   public void reset(){
