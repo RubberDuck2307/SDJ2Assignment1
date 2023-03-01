@@ -37,6 +37,10 @@ public class VinylDetailViewController
     errorLabel.textProperty().bind(viewModel.getErrorProperty());
     viewModel.init();
 
+    if (state.textProperty().getValue().equals("Borrowed") || state.textProperty().getValue().equals("Reserved and borrowed") ){
+      borrowReturnButton.setText("Return");
+    }
+
   }
 
   public void reset(){}

@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import model.Model;
 import model.ModelManager;
 import model.Vinyl;
+import model.VinylState.ReservedBorrowedState;
 import model.VinylState.VinylState;
 import view.ViewState;
 
@@ -31,7 +32,7 @@ public class VinylViewModel implements PropertyChangeListener {
 
     private void getFromModel() {
         ArrayList<Vinyl> vinylArrayList = model.getVinylArraylist();
-        vinylArrayList.add(new Vinyl("test vinyl", "test", 2,"test",1));
+        vinylArrayList.add(new Vinyl("test vinyl", "test", 2,"test",1, new ReservedBorrowedState()));
         for (Vinyl vinyl : vinylArrayList) {
             System.out.println(vinyl);
             list.add(new SimpleVinylViewModel(vinyl));

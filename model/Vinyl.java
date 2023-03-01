@@ -16,7 +16,7 @@ public class Vinyl {
     private String reservationName;
     private int id;
 
-    public Vinyl(String title, String artist, int year, String reservationName, int id)
+    public Vinyl(String title, String artist, int year, String reservationName, int id, VinylState state)
     {
         this.artist = artist;
         this.title = title;
@@ -24,6 +24,7 @@ public class Vinyl {
         this.state = new AvailableState();
         this.reservationName = reservationName;
         this.id = id;
+        this.state = state;
     }
 
     public VinylState getState() {

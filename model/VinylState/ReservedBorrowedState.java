@@ -6,7 +6,7 @@ public class ReservedBorrowedState implements VinylState{
 
     @Override
     public String getName() {
-        return "Reserved and Borrowed";
+        return "Reserved and borrowed";
     }
 
     @Override
