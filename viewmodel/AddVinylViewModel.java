@@ -12,7 +12,6 @@ public class AddVinylViewModel
 {
   private StringProperty titleProperty;
   private StringProperty artistProperty;
-  private StringProperty stateProperty;
   private IntegerProperty yearProperty;
   private StringProperty errorProperty;
   private ViewState viewState;
@@ -22,7 +21,6 @@ public class AddVinylViewModel
     this.model=model;
     this.titleProperty=new SimpleStringProperty();
     this.artistProperty=new SimpleStringProperty();
-    this.stateProperty=new SimpleStringProperty();
     this.yearProperty=new SimpleIntegerProperty();
     this.errorProperty = new SimpleStringProperty();
     this.viewState = viewState;
@@ -32,7 +30,6 @@ public class AddVinylViewModel
     titleProperty.set("");
     artistProperty.set("");
     yearProperty.set(0);
-    stateProperty.set("");
   }
 
   public void add(Vinyl vinyl){
@@ -52,11 +49,6 @@ public class AddVinylViewModel
   public StringProperty getArtistProperty()
   {
     return artistProperty;
-  }
-
-  public StringProperty getStateProperty()
-  {
-    return stateProperty;
   }
 
   public StringProperty getErrorProperty()

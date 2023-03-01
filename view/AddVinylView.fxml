@@ -92,27 +92,6 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="151.0" prefHeight="73.0" prefWidth="600.0">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="74.0" prefWidth="300.0">
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding>
-                     <children>
-                        <TextField fx:id="state" prefHeight="35.0" prefWidth="300.0" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="300.0">
-                     <children>
-                        <Label prefHeight="36.0" prefWidth="147.0" text="State">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
             <HBox prefHeight="66.0" prefWidth="600.0">
                <children>
                   <VBox alignment="CENTER_RIGHT" prefHeight="74.0" prefWidth="300.0">
