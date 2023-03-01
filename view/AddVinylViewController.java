@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import model.Vinyl;
 import utility.StringIntegerConverter;
 import viewmodel.AddVinylViewModel;
 import viewmodel.VinylDetailViewModel;
@@ -37,7 +38,11 @@ public class AddVinylViewController
   }
 
 
-  @FXML public void addButtonPressed(){}
+  @FXML public void addButtonPressed(){
+    Vinyl vinyl = new Vinyl(title.getText(),artist.getText(),Integer.parseInt(year.getText()));
+    viewModel.add(vinyl);
+
+  }
   @FXML public void cancelButtonPressed(){
     viewModel.reset();
     viewHandler.openView("list");

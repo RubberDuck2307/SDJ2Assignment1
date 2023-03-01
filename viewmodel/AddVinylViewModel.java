@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Model;
+import model.Vinyl;
 import view.ViewState;
 
 public class AddVinylViewModel
@@ -32,6 +33,10 @@ public class AddVinylViewModel
     artistProperty.set("");
     yearProperty.set(0);
     stateProperty.set("");
+  }
+
+  public void add(Vinyl vinyl){
+    model.addVinyl(vinyl);
   }
 
   public StringProperty getTitleProperty()

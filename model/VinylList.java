@@ -13,6 +13,10 @@ public class VinylList
 
   public void addVinyl(Vinyl vinyl)
   {
+    if (vinyl.getId() == -1){
+      int lastElementId = vinylList.get(vinylList.size() -1).getId();
+      vinyl.setId(lastElementId + 1);
+    }
     vinylList.add(vinyl);
   }
 

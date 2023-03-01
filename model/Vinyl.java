@@ -16,14 +16,24 @@ public class Vinyl {
     private String reservationName;
     private int id;
 
-    public Vinyl(String title, String artist, int year, String reservationName, int id)
+    public Vinyl(String title, String artist, int year, int id)
     {
         this.artist = artist;
         this.title = title;
         this.year = year;
         this.state = new AvailableState();
-        this.reservationName = reservationName;
         this.id = id;
+    }
+
+    public Vinyl(String title, String artist, int year)
+    {
+        this.artist = artist;
+        this.title = title;
+        this.year = year;
+        this.state = new AvailableState();
+        id = -1;
+        reservationName = "";
+
     }
 
     public VinylState getState() {
