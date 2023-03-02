@@ -58,6 +58,8 @@ public class VinylViewModel implements PropertyChangeListener {
             list.add(new SimpleVinylViewModel((Vinyl) evt.getNewValue()));
         }
         if (evt.getPropertyName().equals("remove")) {
+            list.remove(new SimpleVinylViewModel((Vinyl) evt.getNewValue()));
+            System.out.println(list);
             //Todo: what to put here???
             /*int remove = list.size() - 1;
             Platform.runLater(() ->list.remove(model.getVinylById(

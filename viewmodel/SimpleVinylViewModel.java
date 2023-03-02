@@ -4,6 +4,8 @@ import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 import model.Vinyl;
 
+import java.util.Objects;
+
 public class SimpleVinylViewModel
 {
   private SimpleObjectProperty<Integer> year;
@@ -101,5 +103,13 @@ public class SimpleVinylViewModel
     return state;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null || obj.getClass() != getClass()){
+      return false;
+    }
+    SimpleVinylViewModel vinyl = (SimpleVinylViewModel) obj;
+    return vinyl.id == id && title.getValue().equals(vinyl.title.getValue()) && artist.getValue().equals(vinyl.artist.getValue()) && Objects.equals(year.getValue(), vinyl.year.getValue()) && state.getValue().equals(vinyl.state.getValue());
 
+  }
 }

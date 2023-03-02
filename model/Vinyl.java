@@ -57,6 +57,9 @@ public class Vinyl {
         return year;
     }
 
+    public void borrow(){
+        state.Borrow(this);
+    }
 
     public void setArtist(String artist) {
         this.artist = artist;

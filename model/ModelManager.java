@@ -71,7 +71,7 @@ public class ModelManager implements Model, PropertyChangeSubject{
 
     @Override public void changeToBorrowed(Vinyl vinyl)
     {
-        vinyl.setState(new BorrowedState());
+        vinyl.borrow();
     }
 
     @Override public void returnVinyl(Vinyl vinyl)
