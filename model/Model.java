@@ -8,6 +8,7 @@ public interface Model extends PropertyChangeSubject
 
     public ArrayList<Vinyl> getVinylArraylist();
     public Vinyl getVinylById(int id);
+    public Vinyl getVinylByIndex(int index);
 
     public Vinyl getVinylByTitle(String title);
 
