@@ -60,6 +60,12 @@ public class Vinyl {
     public void borrow(){
         state.Borrow(this);
     }
+    public void reserve(){
+        state.Reserve(this, "AA");
+    }
+    public void returnItem(){
+        state.Return(this);
+    }
 
     public void setArtist(String artist) {
         this.artist = artist;

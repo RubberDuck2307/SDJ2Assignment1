@@ -33,12 +33,16 @@ public class VinylViewModel implements PropertyChangeListener {
     }
 
     private void getFromModel() {
+        list.clear();
         ArrayList<Vinyl> vinylArrayList = model.getVinylArraylist();
         for (Vinyl vinyl : vinylArrayList) {
-            System.out.println(vinyl);
             list.add(new SimpleVinylViewModel(vinyl));
         }
+        System.out.println(list);
+    }
 
+    public void reset(){
+        getFromModel();
     }
 
     public StringProperty getErrorProperty()

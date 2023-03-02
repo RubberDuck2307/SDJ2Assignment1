@@ -18,7 +18,7 @@ public class BorrowedState implements VinylState{
     public void Reserve(Vinyl vinyl, String name) {
 
         vinyl.setReservationName(name);
-        vinyl.setState(new ReservedState());
+        vinyl.setState(new ReservedBorrowedState());
 
     }
 

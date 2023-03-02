@@ -1,6 +1,8 @@
 package view;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,54 +28,113 @@ public class VinylDetailViewController
   private Region root;
   private VinylDetailViewModel viewModel;
   private ViewHandler viewHandler;
-  public void init(ViewHandler viewHandler, VinylDetailViewModel viewModel, Region root){
-    this.root=root;
-    this.viewHandler=viewHandler;
-    this.viewModel=viewModel;
-    title.textProperty().bind(viewModel.getTitleProperty());
-    artist.textProperty().bind(viewModel.getArtistProperty());
-    Bindings.bindBidirectional(year.textProperty(),viewModel.getYearProperty(), new StringIntegerConverter(0));
+  private BooleanProperty reserved;
+  private BooleanProperty borrowed;
+
+
+  public void init(ViewHandler viewHandler, VinylDetailViewModel viewModel,
+      Region root)
+  {
+    this.root = root;
+    this.viewHandler = viewHandler;
+    this.viewModel = viewModel;
+    reserved = new SimpleBooleanProperty();
+    borrowed = new SimpleBooleanProperty();
+    reserved.bindBidirectional(viewModel.reservedProperty());
+    borrowed.bindBidirectional(viewModel.borrowedProperty());
+
+    title.textProperty().bindBidirectional(viewModel.getTitleProperty());
+    artist.textProperty().bindBidirectional(viewModel.getArtistProperty());
+    Bindings.bindBidirectional(year.textProperty(), viewModel.getYearProperty(),
+        new StringIntegerConverter(0));
     state.textProperty().bindBidirectional(viewModel.getStateProperty());
     errorLabel.textProperty().bind(viewModel.getErrorProperty());
     viewModel.init();
-
-    if (state.textProperty().getValue().equals("Borrowed") || state.textProperty().getValue().equals("Reserved and borrowed") ){
-      borrowReturnButton.setText("Return");
-    }
-    if (state.textProperty().getValue().equals("Borrowed") || state.textProperty().getValue().equals("Reserved and borrowed")|| state.textProperty().getValue().equals("Reserved") ){
-      removeButton.setDisable(true);
-    }
-
+    borrowed.addListener((observable, oldValue, newValue) -> borrow());
+    reserved.addListener( (observable, oldValue, newValue) -> reserved());
+    viewModel.buttonTextProperty().addListener((observable, oldValue, newValue) -> changeText(newValue));
 
   }
 
-  public void reset(){
+  public void changeText(String newValue){
+    System.out.println(newValue);
+    borrowReturnButton.setText(newValue);
+  }
+  public void reset()
+  {
     viewModel.reset();
   }
+
   public Region getRoot()
   {
     return root;
   }
 
-  @FXML public void reservePressed(){
-      viewModel.reserve();
-      state.setText("Reserved");
+  public void reserved(){
+    reserveButton.setDisable(reserved.getValue());
+    removeButton.setDisable(reserved.getValue() || borrowed.getValue());
   }
-  @FXML public void borrowReturnButtonPressed(){
-    if (state.textProperty().getValue().equals("Borrowed") || state.textProperty().getValue().equals("Reserved and borrowed") ){
-      viewModel.returnVinyl();
+  public void borrow(){
+    System.out.println(borrowed);
+    removeButton.setDisable(reserved.getValue() || borrowed.getValue());
+
+  }
+
+
+
+ /* public void changeButton()
+  {
+    if (state.textProperty().getValue().equals("Borrowed")
+        || state.textProperty().getValue().equals("Reserved and borrowed"))
+    {
+      borrowReturnButton.setText("Return");
+    }
+    else if (state.textProperty().getValue().equals("Available")|| state.textProperty().getValue().equals("Reserved")){
+      borrowReturnButton.setText("Borrow");
+    }
+    if(state.textProperty().getValue().equals("Reserved and borrowed") || state.textProperty().getValue().equals("Reserved")){
+      reserveButton.setDisable(true);
     }
     else{
-      viewModel.borrow();
-      state.setText("Borrowed");
+      reserveButton.setDisable(false);
+    }
+    if (state.textProperty().getValue().equals("Borrowed")
+        || state.textProperty().getValue().equals("Reserved and borrowed")
+        || state.textProperty().getValue().equals("Reserved"))
+    {
+      removeButton.setDisable(true);
+    }
+    else {
+      removeButton.setDisable(false);
     }
   }
-  @FXML public void cancelPressed(){
+*/
+  @FXML public void reservePressed()
+  {
+    viewModel.reserve();
+  }
+
+  @FXML public void borrowReturnButtonPressed()
+  {
+    if (state.textProperty().getValue().equals("Borrowed")
+        || state.textProperty().getValue().equals("Reserved and borrowed"))
+    {
+      viewModel.returnVinyl();
+    }
+    else
+    {
+      viewModel.borrow();
+    }
+  }
+
+  @FXML public void cancelPressed()
+  {
     viewModel.reset();
     viewHandler.openView("list");
   }
 
-  @FXML public void removePressed(){
+  @FXML public void removePressed()
+  {
     viewModel.remove();
     viewHandler.openView("list");
   }
