@@ -17,7 +17,7 @@ public interface Model extends PropertyChangeSubject
     public void removeVinylByTitle(String title);
 
     public void addVinyl(Vinyl vinyl);
-    public void changeToReserved(Vinyl vinyl);
+    public void changeToReserved(Vinyl vinyl, String name);
     public void changeToBorrowed(Vinyl vinyl);
     public void returnVinyl(Vinyl vinyl);
 }

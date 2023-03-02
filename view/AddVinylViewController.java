@@ -40,7 +40,6 @@ public class AddVinylViewController
     Vinyl vinyl = new Vinyl(title.getText(),artist.getText(),Integer.parseInt(year.getText()));
     viewModel.add(vinyl);
     viewHandler.openView("list");
-
   }
   @FXML public void cancelButtonPressed(){
     viewModel.reset();

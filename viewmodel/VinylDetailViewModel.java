@@ -1,6 +1,8 @@
 package viewmodel;
 
 import javafx.beans.property.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import model.Model;
 import model.ModelManager;
 import model.Vinyl;
@@ -9,6 +11,8 @@ import view.VinylDetailViewController;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Objects;
+import java.util.Optional;
 
 public class VinylDetailViewModel implements PropertyChangeListener
 {
@@ -86,11 +90,21 @@ private StringProperty buttonText;
   }
 
 
-  public void reserve()
+  public void reserve(String name)
   {
-    model.changeToReserved(model.getVinylById(viewState.getVinylId()));
-    System.out.println(model.getVinylById(viewState.getVinylId()));
-    System.out.println(model.getVinylById(viewState.getVinylId()).getState());
+    if(Objects.equals(name, "")){
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Empty field");
+      alert.setHeaderText("You have to insert a name in order to reserve it. BTW, Alex likes small dicks.");
+      Optional<ButtonType> result = alert.showAndWait();
+    }
+    else{
+      model.changeToReserved(model.getVinylById(viewState.getVinylId()), name);
+      System.out.println("Name: " + name);
+      System.out.println(model.getVinylById(viewState.getVinylId()));
+      System.out.println(model.getVinylById(viewState.getVinylId()).getState());
+    }
+
   }
 
   public void borrow()

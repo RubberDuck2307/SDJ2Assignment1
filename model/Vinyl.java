@@ -60,8 +60,8 @@ public class Vinyl {
     public void borrow(){
         state.Borrow(this);
     }
-    public void reserve(){
-        state.Reserve(this, "AA");
+    public void reserve(String name){
+        state.Reserve(this, name);
     }
     public void returnItem(){
         state.Return(this);

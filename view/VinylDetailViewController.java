@@ -42,6 +42,7 @@ public class VinylDetailViewController
     borrowed = new SimpleBooleanProperty();
     reserved.bindBidirectional(viewModel.reservedProperty());
     borrowed.bindBidirectional(viewModel.borrowedProperty());
+    reservedField.setText("");
 
     title.textProperty().bindBidirectional(viewModel.getTitleProperty());
     artist.textProperty().bindBidirectional(viewModel.getArtistProperty());
@@ -82,36 +83,10 @@ public class VinylDetailViewController
 
 
 
- /* public void changeButton()
-  {
-    if (state.textProperty().getValue().equals("Borrowed")
-        || state.textProperty().getValue().equals("Reserved and borrowed"))
-    {
-      borrowReturnButton.setText("Return");
-    }
-    else if (state.textProperty().getValue().equals("Available")|| state.textProperty().getValue().equals("Reserved")){
-      borrowReturnButton.setText("Borrow");
-    }
-    if(state.textProperty().getValue().equals("Reserved and borrowed") || state.textProperty().getValue().equals("Reserved")){
-      reserveButton.setDisable(true);
-    }
-    else{
-      reserveButton.setDisable(false);
-    }
-    if (state.textProperty().getValue().equals("Borrowed")
-        || state.textProperty().getValue().equals("Reserved and borrowed")
-        || state.textProperty().getValue().equals("Reserved"))
-    {
-      removeButton.setDisable(true);
-    }
-    else {
-      removeButton.setDisable(false);
-    }
-  }
-*/
+
   @FXML public void reservePressed()
   {
-    viewModel.reserve();
+    viewModel.reserve(reservedField.getText());
   }
 
   @FXML public void borrowReturnButtonPressed()

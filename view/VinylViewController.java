@@ -33,7 +33,6 @@ public class VinylViewController
     this.viewModel = viewModel;
     this.viewHandler = viewHandler;
     this.root = root;
-    System.out.println("Hello, this is me, Anna! I am using bad keyboard.It sucks!");
     titleColumn.setCellValueFactory(cellData -> cellData.getValue().getTitleProperty());
     artistColumn.setCellValueFactory(cellData -> cellData.getValue().getArtistProperty());
     statusColumn.setCellValueFactory(cellData -> cellData.getValue().getStateProperty());
