@@ -30,6 +30,11 @@ public class ModelManager implements Model, PropertyChangeSubject{
     }
 
     @Override
+    public Vinyl getVinylByIndex(int index){
+        return vinylList.getVinylByIndex(index);
+    }
+
+    @Override
     public Vinyl getVinylByTitle(String title) {
         return getVinylByTitle(title);
     }
