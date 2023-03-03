@@ -107,7 +107,7 @@ private BooleanProperty isAboutToDeleted;
     artistProperty.setValue(vinyl.getArtist());
     yearProperty.setValue(vinyl.getYear());
     stateProperty.setValue(vinyl.getState().getName());
-    reservedString.setValue("");
+    reservedString.setValue(vinyl.getReservationName());
     loadIsAboutToDeleted();
     setBooleans();
     setButtonText();
@@ -130,8 +130,19 @@ private BooleanProperty isAboutToDeleted;
 
   public void borrow()
   {
-    model.changeToBorrowed(model.getVinylById(viewState.getVinylId()));
+    if(stateProperty.getValue().equals("Reserved")) {
 
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "are you " + reservedString.getValue() + "?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+      alert.showAndWait();
+
+      if (alert.getResult() == ButtonType.YES) {
+        model.changeToBorrowed(model.getVinylById(viewState.getVinylId()));
+        reservedString.set("");
+      }
+    }
+    else {
+      model.changeToBorrowed(model.getVinylById(viewState.getVinylId()));
+    }
   }
 
   public void returnVinyl()
