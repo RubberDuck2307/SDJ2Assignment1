@@ -16,6 +16,7 @@ public class Vinyl {
     private String reservationName;
     private int id;
 
+    private boolean deleteFlag;
     public Vinyl(String title, String artist, int year, int id)
     {
         this.artist = artist;
@@ -23,10 +24,12 @@ public class Vinyl {
         this.year = year;
         this.state = new AvailableState();
         this.id = id;
+        deleteFlag = false;
     }
 
     public Vinyl(String title, String artist, int year)
     {
+        deleteFlag = false;
         this.artist = artist;
         this.title = title;
         this.year = year;
@@ -98,6 +101,18 @@ public class Vinyl {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public boolean remove(){
+       return state.remove(this);
+    }
+
+    public void setDeleteFlag(boolean deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 
     @Override public String toString()

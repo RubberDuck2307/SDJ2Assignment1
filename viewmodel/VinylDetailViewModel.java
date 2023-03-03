@@ -23,10 +23,16 @@ public class VinylDetailViewModel implements PropertyChangeListener
   private StringProperty errorProperty;
   private ViewState viewState;
   private Model model;
+
+  private StringProperty reservedString;
 private BooleanProperty reserved;
 private BooleanProperty borrowed;
 
 private StringProperty buttonText;
+
+private BooleanProperty deleted;
+
+private BooleanProperty isAboutToDeleted;
   public VinylDetailViewModel(Model model, ViewState viewState)
   {
     this.model = model;
@@ -39,7 +45,22 @@ private StringProperty buttonText;
     this.viewState = viewState;
     this.reserved = new SimpleBooleanProperty();
     this.borrowed = new SimpleBooleanProperty();
+    deleted = new SimpleBooleanProperty();
+    reservedString = new SimpleStringProperty();
+    isAboutToDeleted = new SimpleBooleanProperty();
     model.addListener(this);
+  }
+
+  public String getReservedString() {
+    return reservedString.get();
+  }
+
+  public StringProperty reservedStringProperty() {
+    return reservedString;
+  }
+
+  public void setReservedString(String reservedString) {
+    this.reservedString.set(reservedString);
   }
 
   public boolean isReserved()
@@ -80,11 +101,14 @@ private StringProperty buttonText;
   public void init()
   {
 
+    deleted.setValue(false);
     Vinyl vinyl = model.getVinylById(viewState.getVinylId());
     titleProperty.setValue(vinyl.getTitle());
     artistProperty.setValue(vinyl.getArtist());
     yearProperty.setValue(vinyl.getYear());
     stateProperty.setValue(vinyl.getState().getName());
+    reservedString.setValue("");
+    loadIsAboutToDeleted();
     setBooleans();
     setButtonText();
   }
@@ -96,13 +120,10 @@ private StringProperty buttonText;
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setTitle("Empty field");
       alert.setHeaderText("You have to insert a name in order to reserve it. BTW, Alex likes small dicks.");
-      Optional<ButtonType> result = alert.showAndWait();
+      alert.showAndWait();
     }
     else{
       model.changeToReserved(model.getVinylById(viewState.getVinylId()), name);
-      System.out.println("Name: " + name);
-      System.out.println(model.getVinylById(viewState.getVinylId()));
-      System.out.println(model.getVinylById(viewState.getVinylId()).getState());
     }
 
   }
@@ -110,16 +131,17 @@ private StringProperty buttonText;
   public void borrow()
   {
     model.changeToBorrowed(model.getVinylById(viewState.getVinylId()));
-    System.out.println(model.getVinylById(viewState.getVinylId()));
-    System.out.println(model.getVinylById(viewState.getVinylId()).getState());
+
   }
 
   public void returnVinyl()
   {
     model.returnVinyl(model.getVinylById(viewState.getVinylId()));
-    System.out.println(model.getVinylById(viewState.getVinylId()));
-    System.out.println(model.getVinylById(viewState.getVinylId()).getState());
-  }
+    if (model.getVinylById(viewState.getVinylId()).isDeleteFlag()){
+      model.removeVinylById(viewState.getVinylId());
+      deleted.setValue(true);
+    }
+    }
 
   public StringProperty getTitleProperty()
   {
@@ -148,7 +170,17 @@ private StringProperty buttonText;
 
   public void remove()
   {
-    model.removeVinylById(viewState.getVinylId());
+    if(model.getVinylById(viewState.getVinylId()).remove()) {
+      model.removeVinylById(viewState.getVinylId());
+      deleted.setValue(true);
+    }
+    else {
+      isAboutToDeleted.setValue(true);
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Will be deleted");
+      alert.setHeaderText("The record will be deleted when the vinyl will be returned and not reserved");
+      alert.showAndWait();
+    }
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
@@ -181,14 +213,40 @@ private StringProperty buttonText;
   }
 
   public void setButtonText(){
-    System.out.println("Funguju");
     if (stateProperty.getValue().equals("Borrowed") || stateProperty.getValue().equals("Reserved and borrowed") ){
       buttonText.setValue("Return");
-      System.out.println("Ted uz tam má být ");
     }
     else{
       buttonText.setValue("Borrow");
     }
 
+  }
+
+  public boolean isDeleted() {
+    return deleted.get();
+  }
+
+  public BooleanProperty deletedProperty() {
+    return deleted;
+  }
+
+  public void setDeleted(boolean deleted) {
+    this.deleted.set(deleted);
+  }
+
+  public boolean isIsAboutToDeleted() {
+    return isAboutToDeleted.get();
+  }
+
+  public BooleanProperty isAboutToDeletedProperty() {
+    return isAboutToDeleted;
+  }
+
+  public void setIsAboutToDeleted(boolean isAboutToDeleted) {
+    this.isAboutToDeleted.set(isAboutToDeleted);
+  }
+
+  public void  loadIsAboutToDeleted(){
+    isAboutToDeleted.setValue(model.getVinylById(viewState.getVinylId()).isDeleteFlag());
   }
 }

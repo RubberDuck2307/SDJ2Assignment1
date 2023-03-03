@@ -29,7 +29,9 @@ public class AddVinylViewController
     errorLabel.textProperty().bind(viewModel.getErrorProperty());
   }
 
-  public void reset(){}
+  public void reset(){
+    viewModel.reset();
+  }
   public Region getRoot()
   {
     return root;
@@ -42,7 +44,6 @@ public class AddVinylViewController
     viewHandler.openView("list");
   }
   @FXML public void cancelButtonPressed(){
-    viewModel.reset();
     viewHandler.openView("list");
   }
 }

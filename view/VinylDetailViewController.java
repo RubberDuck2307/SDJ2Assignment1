@@ -31,7 +31,9 @@ public class VinylDetailViewController
   private BooleanProperty reserved;
   private BooleanProperty borrowed;
 
+  private BooleanProperty isAboutToBeDeleted;
 
+  // Do not try to read this code it mess
   public void init(ViewHandler viewHandler, VinylDetailViewModel viewModel,
       Region root)
   {
@@ -40,9 +42,11 @@ public class VinylDetailViewController
     this.viewModel = viewModel;
     reserved = new SimpleBooleanProperty();
     borrowed = new SimpleBooleanProperty();
+    isAboutToBeDeleted = new SimpleBooleanProperty();
     reserved.bindBidirectional(viewModel.reservedProperty());
     borrowed.bindBidirectional(viewModel.borrowedProperty());
     reservedField.setText("");
+    reservedField.textProperty().bindBidirectional(viewModel.reservedStringProperty());
 
     title.textProperty().bindBidirectional(viewModel.getTitleProperty());
     artist.textProperty().bindBidirectional(viewModel.getArtistProperty());
@@ -51,9 +55,11 @@ public class VinylDetailViewController
     state.textProperty().bindBidirectional(viewModel.getStateProperty());
     errorLabel.textProperty().bind(viewModel.getErrorProperty());
     viewModel.init();
-    borrowed.addListener((observable, oldValue, newValue) -> borrow());
     reserved.addListener( (observable, oldValue, newValue) -> reserved());
     viewModel.buttonTextProperty().addListener((observable, oldValue, newValue) -> changeText(newValue));
+    viewModel.deletedProperty().addListener((observable, oldValue, newValue) -> cancelPressed());
+    isAboutToBeDeleted.bind(viewModel.isAboutToDeletedProperty());
+    isAboutToBeDeleted.addListener(observable -> reserved());
 
   }
 
@@ -72,14 +78,9 @@ public class VinylDetailViewController
   }
 
   public void reserved(){
-    reserveButton.setDisable(reserved.getValue());
-    removeButton.setDisable(reserved.getValue() || borrowed.getValue());
+    reserveButton.setDisable(reserved.getValue() || isAboutToBeDeleted.getValue());
   }
-  public void borrow(){
-    System.out.println(borrowed);
-    removeButton.setDisable(reserved.getValue() || borrowed.getValue());
 
-  }
 
 
 
@@ -104,13 +105,12 @@ public class VinylDetailViewController
 
   @FXML public void cancelPressed()
   {
-    viewModel.reset();
     viewHandler.openView("list");
   }
 
   @FXML public void removePressed()
   {
     viewModel.remove();
-    viewHandler.openView("list");
   }
+
 }

@@ -7,6 +7,7 @@ public class BorrowedState implements VinylState{
     @Override
     public String getName() {
         return "Borrowed";
+
     }
 
     @Override
@@ -20,6 +21,12 @@ public class BorrowedState implements VinylState{
         vinyl.setReservationName(name);
         vinyl.setState(new ReservedBorrowedState());
 
+    }
+
+    @Override
+    public boolean remove(Vinyl vinyl) {
+        vinyl.setDeleteFlag(true);
+        return false;
     }
 
     @Override

@@ -25,4 +25,9 @@ public class AvailableState implements VinylState{
     public void Return(Vinyl vinyl) {
         throw new RuntimeException("The vinyl is not borrowed");
     }
+
+    @Override
+    public boolean remove(Vinyl vinyl) {
+        return true;
+    }
 }
