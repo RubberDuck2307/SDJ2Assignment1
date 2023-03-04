@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import model.Vinyl;
 
 import java.util.Objects;
+import java.util.SimpleTimeZone;
 
 public class SimpleVinylViewModel
 {

@@ -30,14 +30,14 @@ public class Bidder implements Runnable {
 
     @Override
     public void run() {
-        try {
-            Thread.sleep(waiting);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         Random random = new Random();
         for (int i = 0; i < 4; i++) {
             if (running) {
+                try {
+                    Thread.sleep(waiting);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 Vinyl vinyl = model.getVinylByIndex(random.nextInt(model.vinylListSize()));
                 int x = random.nextInt(3);
                 switch (x) {
@@ -71,18 +71,12 @@ public class Bidder implements Runnable {
                                 model.returnVinyl(vinyl);
                                 borrowed.removeVinylByIndex(0);
                                 System.out.println(vinyl.getTitle() + " is returned");
-                            }
-                            else System.out.println(Thread.currentThread().getName() + " has nothing to return");
+                            } else System.out.println(Thread.currentThread().getName() + " has nothing to return");
                         } catch (Exception e) {
                             System.out.println(vinyl.getTitle() + " cannot be returned");
                         }
                         break;
                     }
-                }
-                try {
-                    Thread.sleep(waiting);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
                 }
             }
         }

@@ -40,6 +40,16 @@ public class Vinyl {
 
     }
 
+    public Vinyl(String title, String artist, int year, VinylState state, String reservationName, int id, boolean deleteFlag) {
+        this.title = title;
+        this.artist = artist;
+        this.year = year;
+        this.state = state;
+        this.reservationName = reservationName;
+        this.id = id;
+        this.deleteFlag = deleteFlag;
+    }
+
     public VinylState getState() {
         return state;
     }
@@ -123,6 +133,12 @@ public class Vinyl {
     public void setDeleteFlag(boolean deleteFlag) {
         this.deleteFlag = deleteFlag;
     }
+
+    public Vinyl copy(){
+        return new Vinyl(title,artist,year,state,reservationName,id,deleteFlag);
+    }
+
+
 
     @Override public String toString()
     {

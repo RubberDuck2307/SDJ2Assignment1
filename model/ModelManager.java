@@ -71,25 +71,29 @@ public class ModelManager implements Model, PropertyChangeSubject{
 
     @Override public synchronized void changeToReserved(Vinyl vinyl, String name)
     {
+        Vinyl oldValue = vinyl.copy();;
         vinyl.reserve(name);
-        property.firePropertyChange("statusChange", false, vinyl);
+        property.firePropertyChange("statusChange", oldValue, vinyl);
     }
 
     @Override public synchronized void changeToBorrowed(Vinyl vinyl)
     {
+        Vinyl oldValue = vinyl.copy();;
         vinyl.borrow();
-        property.firePropertyChange("statusChange", false, vinyl);
+        property.firePropertyChange("statusChange", oldValue, vinyl);
     }
 
     @Override public synchronized void returnVinyl(Vinyl vinyl)
     {
+        Vinyl oldValue = vinyl.copy();;
         vinyl.returnItem();
-        property.firePropertyChange("statusChange", false, vinyl);
+        property.firePropertyChange("statusChange", oldValue, vinyl);
     }
 
     public synchronized void changeToBorrowed(Vinyl vinyl, String name){
+        Vinyl oldValue = vinyl.copy();
         vinyl.borrow(name);
-        property.firePropertyChange("statusChange", false, vinyl);
+        property.firePropertyChange("statusChange", oldValue, vinyl);
     }
 
     @Override
