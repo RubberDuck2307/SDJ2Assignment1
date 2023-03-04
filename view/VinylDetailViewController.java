@@ -1,6 +1,8 @@
 package view;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,55 +28,89 @@ public class VinylDetailViewController
   private Region root;
   private VinylDetailViewModel viewModel;
   private ViewHandler viewHandler;
-  public void init(ViewHandler viewHandler, VinylDetailViewModel viewModel, Region root){
-    this.root=root;
-    this.viewHandler=viewHandler;
-    this.viewModel=viewModel;
-    title.textProperty().bind(viewModel.getTitleProperty());
-    artist.textProperty().bind(viewModel.getArtistProperty());
-    Bindings.bindBidirectional(year.textProperty(),viewModel.getYearProperty(), new StringIntegerConverter(0));
+  private BooleanProperty reserved;
+  private BooleanProperty borrowed;
+
+  private BooleanProperty isAboutToBeDeleted;
+
+  // Do not try to read this code it mess
+  public void init(ViewHandler viewHandler, VinylDetailViewModel viewModel,
+      Region root)
+  {
+    this.root = root;
+    this.viewHandler = viewHandler;
+    this.viewModel = viewModel;
+    reserved = new SimpleBooleanProperty();
+    borrowed = new SimpleBooleanProperty();
+    isAboutToBeDeleted = new SimpleBooleanProperty();
+    reserved.bindBidirectional(viewModel.reservedProperty());
+    borrowed.bindBidirectional(viewModel.borrowedProperty());
+    reservedField.setText("");
+    reservedField.textProperty().bindBidirectional(viewModel.reservedStringProperty());
+
+    title.textProperty().bindBidirectional(viewModel.getTitleProperty());
+    artist.textProperty().bindBidirectional(viewModel.getArtistProperty());
+    Bindings.bindBidirectional(year.textProperty(), viewModel.getYearProperty(),
+        new StringIntegerConverter(0));
     state.textProperty().bindBidirectional(viewModel.getStateProperty());
     errorLabel.textProperty().bind(viewModel.getErrorProperty());
     viewModel.init();
-
-    if (state.textProperty().getValue().equals("Borrowed") || state.textProperty().getValue().equals("Reserved and borrowed") ){
-      borrowReturnButton.setText("Return");
-    }
-    if (state.textProperty().getValue().equals("Borrowed") || state.textProperty().getValue().equals("Reserved and borrowed")|| state.textProperty().getValue().equals("Reserved") ){
-      removeButton.setDisable(true);
-    }
-
+    reserved.addListener( (observable, oldValue, newValue) -> reserved());
+    viewModel.buttonTextProperty().addListener((observable, oldValue, newValue) -> changeText(newValue));
+    viewModel.deletedProperty().addListener((observable, oldValue, newValue) -> cancelPressed());
+    isAboutToBeDeleted.bind(viewModel.isAboutToDeletedProperty());
+    isAboutToBeDeleted.addListener(observable -> reserved());
 
   }
 
-  public void reset(){
+  public void changeText(String newValue){
+    System.out.println(newValue);
+    borrowReturnButton.setText(newValue);
+  }
+  public void reset()
+  {
     viewModel.reset();
   }
+
   public Region getRoot()
   {
     return root;
   }
 
-  @FXML public void reservePressed(){
-      viewModel.reserve();
-      state.setText("Reserved");
+  public void reserved(){
+    reserveButton.setDisable(reserved.getValue() || isAboutToBeDeleted.getValue());
   }
-  @FXML public void borrowReturnButtonPressed(){
-    if (state.textProperty().getValue().equals("Borrowed") || state.textProperty().getValue().equals("Reserved and borrowed") ){
+
+
+
+
+
+  @FXML public void reservePressed()
+  {
+    viewModel.reserve(reservedField.getText());
+  }
+
+  @FXML public void borrowReturnButtonPressed()
+  {
+    if (state.textProperty().getValue().equals("Borrowed")
+        || state.textProperty().getValue().equals("Reserved and borrowed"))
+    {
       viewModel.returnVinyl();
     }
-    else{
+    else
+    {
       viewModel.borrow();
-      state.setText("Borrowed");
     }
   }
-  @FXML public void cancelPressed(){
-    viewModel.reset();
+
+  @FXML public void cancelPressed()
+  {
     viewHandler.openView("list");
   }
 
-  @FXML public void removePressed(){
+  @FXML public void removePressed()
+  {
     viewModel.remove();
-    viewHandler.openView("list");
   }
+
 }

@@ -29,7 +29,9 @@ public class AddVinylViewController
     errorLabel.textProperty().bind(viewModel.getErrorProperty());
   }
 
-  public void reset(){}
+  public void reset(){
+    viewModel.reset();
+  }
   public Region getRoot()
   {
     return root;
@@ -40,10 +42,8 @@ public class AddVinylViewController
     Vinyl vinyl = new Vinyl(title.getText(),artist.getText(),Integer.parseInt(year.getText()));
     viewModel.add(vinyl);
     viewHandler.openView("list");
-
   }
   @FXML public void cancelButtonPressed(){
-    viewModel.reset();
     viewHandler.openView("list");
   }
 }

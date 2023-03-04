@@ -24,6 +24,12 @@ public class ReservedBorrowedState implements VinylState{
     }
 
     @Override
+    public boolean remove(Vinyl vinyl) {
+        vinyl.setDeleteFlag(true);
+        return false;
+    }
+
+    @Override
     public void Return(Vinyl vinyl) {
 
         vinyl.setState(new ReservedState());

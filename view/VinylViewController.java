@@ -54,6 +54,7 @@ public class VinylViewController
 
 
   public void reset(){
+    viewModel.reset();
     //do nothing
   }
 

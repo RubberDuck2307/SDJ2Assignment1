@@ -69,18 +69,21 @@ public class ModelManager implements Model, PropertyChangeSubject{
         property.firePropertyChange("add",null, vinyl);
     }
 
-    @Override public void changeToReserved(Vinyl vinyl)
+    @Override public void changeToReserved(Vinyl vinyl, String name)
     {
-        vinyl.setState(new ReservedState());
+        vinyl.reserve(name);
+        property.firePropertyChange("statusChange", false, vinyl);
     }
 
     @Override public void changeToBorrowed(Vinyl vinyl)
     {
         vinyl.borrow();
+        property.firePropertyChange("statusChange", false, vinyl);
     }
 
     @Override public void returnVinyl(Vinyl vinyl)
     {
-        vinyl.setState(new AvailableState());
+        vinyl.returnItem();
+        property.firePropertyChange("statusChange", false, vinyl);
     }
 }
