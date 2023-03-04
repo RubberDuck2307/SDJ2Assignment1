@@ -52,7 +52,6 @@ public class Bidder implements Runnable {
                         break;
                     }
                     case 1: {
-                        System.out.println("working");
                         System.out.println(Thread.currentThread().getName() + " is trying to borrow " + vinyl.getTitle());
                         try {
                             model.changeToBorrowed(vinyl, Thread.currentThread().getName());
