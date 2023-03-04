@@ -64,7 +64,6 @@ public class VinylDetailViewController
   }
 
   public void changeText(String newValue){
-    System.out.println(newValue);
     borrowReturnButton.setText(newValue);
   }
   public void reset()

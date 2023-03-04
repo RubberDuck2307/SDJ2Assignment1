@@ -1,7 +1,6 @@
 package viewmodel;
 
 import model.Model;
-import view.ViewState;
 
 public class ViewModelFactory
 {

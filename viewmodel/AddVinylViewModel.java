@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Model;
 import model.Vinyl;
-import view.ViewState;
 
 public class AddVinylViewModel
 {

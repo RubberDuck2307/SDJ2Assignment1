@@ -25,6 +25,7 @@ public class Vinyl {
         this.state = new AvailableState();
         this.id = id;
         deleteFlag = false;
+        reservationName = "";
     }
 
     public Vinyl(String title, String artist, int year)
@@ -60,6 +61,14 @@ public class Vinyl {
         return year;
     }
 
+    public void borrow(String name){;
+        if (name.equals(reservationName) || reservationName.equals("")){
+            state.Borrow(this);
+
+        }
+        else throw new RuntimeException("Someone else has reserved this vinyl");
+
+    }
     public void borrow(){
         state.Borrow(this);
     }

@@ -20,70 +20,80 @@ public class ModelManager implements Model, PropertyChangeSubject{
     }
 
     @Override
-    public ArrayList<Vinyl> getVinylArraylist() {
+    public synchronized ArrayList<Vinyl> getVinylArraylist() {
         return vinylList.getVinylList();
     }
 
     @Override
-    public Vinyl getVinylById(int id) {
+    public synchronized Vinyl getVinylById(int id) {
         return vinylList.getVinylByID(id);
     }
 
     @Override
-    public Vinyl getVinylByIndex(int index){
+    public synchronized Vinyl getVinylByIndex(int index){
         return vinylList.getVinylByIndex(index);
     }
 
     @Override
-    public Vinyl getVinylByTitle(String title) {
+    public synchronized Vinyl getVinylByTitle(String title) {
         return getVinylByTitle(title);
     }
 
     @Override
-    public void removeVinylById(int id) {
+    public synchronized void removeVinylById(int id) {
         property.firePropertyChange("remove",null,getVinylById(id));
         vinylList.removeVinylByID(id);
 
     }
 
     @Override
-    public void removeVinylByTitle(String title) {
+    public synchronized void removeVinylByTitle(String title) {
         removeVinylByTitle(title);
         property.firePropertyChange("remove", null, getVinylByTitle(title));
     }
 
     @Override
-    public void addListener(PropertyChangeListener listener) {
+    public synchronized void addListener(PropertyChangeListener listener) {
         property.addPropertyChangeListener(listener);
 
     }
 
     @Override
-    public void removeListener(PropertyChangeListener listener) {
+    public synchronized void removeListener(PropertyChangeListener listener) {
         property.removePropertyChangeListener(listener);
     }
 
     @Override
-    public void addVinyl(Vinyl vinyl) {
+    public synchronized void addVinyl(Vinyl vinyl) {
         vinylList.addVinyl(vinyl);
         property.firePropertyChange("add",null, vinyl);
     }
 
-    @Override public void changeToReserved(Vinyl vinyl, String name)
+    @Override public synchronized void changeToReserved(Vinyl vinyl, String name)
     {
         vinyl.reserve(name);
         property.firePropertyChange("statusChange", false, vinyl);
     }
 
-    @Override public void changeToBorrowed(Vinyl vinyl)
+    @Override public synchronized void changeToBorrowed(Vinyl vinyl)
     {
         vinyl.borrow();
         property.firePropertyChange("statusChange", false, vinyl);
     }
 
-    @Override public void returnVinyl(Vinyl vinyl)
+    @Override public synchronized void returnVinyl(Vinyl vinyl)
     {
         vinyl.returnItem();
         property.firePropertyChange("statusChange", false, vinyl);
+    }
+
+    public synchronized void changeToBorrowed(Vinyl vinyl, String name){
+        vinyl.borrow(name);
+        property.firePropertyChange("statusChange", false, vinyl);
+    }
+
+    @Override
+    public synchronized int vinylListSize() {
+        return vinylList.getSize();
     }
 }
