@@ -7,11 +7,11 @@ public interface VinylState {
 
     public String getName();
 
-    public void Borrow(Vinyl vinyl);
+    public void borrow(Vinyl vinyl);
 
-    public void Reserve(Vinyl vinyl,String name);
+    public void reserve(Vinyl vinyl, String name);
 
-    public void Return(Vinyl vinyl);
+    public void returnVinyl(Vinyl vinyl);
 
     public boolean remove(Vinyl vinyl);
 }

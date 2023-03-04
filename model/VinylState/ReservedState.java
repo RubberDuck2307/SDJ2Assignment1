@@ -10,14 +10,14 @@ public class ReservedState implements VinylState{
     }
 
     @Override
-    public void Borrow(Vinyl vinyl) {
+    public void borrow(Vinyl vinyl) {
 
         vinyl.setReservationName(null);
         vinyl.setState(new BorrowedState());
     }
 
     @Override
-    public void Reserve(Vinyl vinyl, String name) {
+    public void reserve(Vinyl vinyl, String name) {
 
         throw new RuntimeException("The vinyl is already reserved");
     }
@@ -30,7 +30,7 @@ public class ReservedState implements VinylState{
 
 
     @Override
-    public void Return(Vinyl vinyl) {
+    public void returnVinyl(Vinyl vinyl) {
 
         throw new RuntimeException("The vinyl is not borrowed");
 

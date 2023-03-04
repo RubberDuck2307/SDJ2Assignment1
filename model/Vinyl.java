@@ -73,20 +73,20 @@ public class Vinyl {
 
     public void borrow(String name){;
         if (name.equals(reservationName) || reservationName.equals("")){
-            state.Borrow(this);
+            state.borrow(this);
 
         }
         else throw new RuntimeException("Someone else has reserved this vinyl");
 
     }
     public void borrow(){
-        state.Borrow(this);
+        state.borrow(this);
     }
     public void reserve(String name){
-        state.Reserve(this, name);
+        state.reserve(this, name);
     }
     public void returnItem(){
-        state.Return(this);
+        state.returnVinyl(this);
     }
 
     public void setArtist(String artist) {
